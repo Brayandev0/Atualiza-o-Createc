@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Createc - Soluções em TI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script type="module" src="faq.js" defer></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-64x64.png" />
+    <style>
+     * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background: #fffcfc;
+            transition: background-image 0.6s ease;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .text-box {
+            width: 50%;
+            padding: 0px;
+            color: white;
+            transition: opacity 0.5s, transform 0.5s;
+            margin-left: 5%;
+        }
+
+        .text-box.hidden {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .text-box.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Animação de digitação */
+        .typing-text {
+            display: inline-block;
+        }
+
+        .typing-text span {
+            opacity: 0;
+            animation: fadeIn 0.1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: white;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .cards {
+            width: 60%;
+            height: 100%;
+            perspective: 1000px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            margin-right: 200px;
+        }
+
+        .card {
+            width: 320px;
+            height: 380px;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.6s ease, z-index 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: white;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 190px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .card-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .card-tag.primary {
+            background: #e91e63;
+        }
+
+        .card-tag.secondary {
+            background: #2196f3;
+        }
+
+        .card-tag.accent {
+            background: #ff9800;
+        }
+
+        .card-title {
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+            font-size: 14px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .company-name {
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        #title{
+            font-size: 50px;
+        }
+
+        .change-btn {
+            position: absolute;
+            bottom: 100px;
+            right: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+            border: none;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .change-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+        }
+
+        .change-btn:active {
+            transform: translateY(0);
+        }
+
+        .text-button {
+            display: inline-block;
+            padding: 12px 44px;
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .text-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(213, 0, 0, 0.6);
+        }
+
+        .text-button:active {
+            transform: translateY(0);
+        }
+
+        /* Posicionamentos em pilha 3D */
+        .position-0 {
+            transform: translateZ(100px) rotateY(0deg) translateX(-100px);
+            z-index: 3;
+        }
+
+        .position-1 {
+            transform: translateZ(0px) rotateY(-10deg) translateX(100px);
+            z-index: 2;
+        }
+
+        .position-2 {
+            transform: translateZ(-100px) rotateY(-20deg) translateX(200px);
+            z-index: 1;
+        }
+
+        /* Responsivo para 800px */
+        @media (max-width: 800px) {
+            body {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px 0;
+            }
+
+            .text-box {
+                width: 100%;
+                padding: 20px 30px;
+                text-align: center;
+                order: 1;
+                height: auto;
+                min-height: 120px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .text-box h2 {
+                margin: 0 0 10px 0;
+                font-size: 24px;
+            }
+
+            .text-box p {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .cards {
+                width: 100%;
+                height: calc(100vh - 140px);
+                justify-content: center;
+                align-items: center;
+                margin-right: 0;
+                order: 2;
+                position: relative;
+            }
+
+            .card {
+                width: 240px;
+                height: 340px;
+            }
+
+            .change-btn {
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                position: fixed;
+                z-index: 10;
+            }
+
+            .position-0 {
+                transform: translateZ(80px) rotateY(0deg) translateX(-60px);
+                z-index: 3;
+            }
+
+            .position-1 {
+                transform: translateZ(0px) rotateY(-8deg) translateX(60px);
+                z-index: 2;
+            }
+
+            .position-2 {
+                transform: translateZ(-80px) rotateY(-16deg) translateX(120px);
+                z-index: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-box {
+                padding: 15px 20px;
+                min-height: 100px;
+            }
+
+            .text-box h2 {
+                font-size: 20px;
+            }
+
+            .text-box p {
+                font-size: 14px;
+            }
+
+            .cards {
+                height: calc(100vh - 120px);
+            }
+
+            .card {
+                width: 220px;
+                height: 320px;
+            }
+
+            .change-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+                bottom: 15px;
+            }
+
+            .position-0 {
+                transform: translateZ(60px) rotateY(0deg) translateX(-40px);
+            }
+
+            .position-1 {
+                transform: translateZ(0px) rotateY(-6deg) translateX(40px);
+            }
+
+            .position-2 {
+                transform: translateZ(-60px) rotateY(-12deg) translateX(80px);
+            }
+        }
+
+    </style>
+</head>
+<header>
+    <div class="container">
+        <div class="img">
+            <img src="arts/logo.png" alt="Logo" />
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Inicio</a></li>
+                <li><a href="sobre-nos" class="nav-link">Sobre Nós</a></li>
+                <li><a href="solucoes" class="nav-link">Soluções</a></li>
+                <li><a href="servicos" class="nav-link">Serviços</a></li>
+                <li><a href="Resultado" class="nav-link">Resultados</a></li>
+                <li><a href="faq" class="nav-link active">FAQ</a></li>
+                <li><a href="/atendimento" class="nav-link">Suporte</a></li>
+                <li><a href="contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-links-container">
+            <button class="cart-button" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+
+        <div class="menu-btn" onclick="toggleMenu()" id="menu-mobile">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items">
+                <p class="empty-cart">Seu carrinho está vazio</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="desfoque" id="desfoque-de-fundo-mobile" onclick="toggleMenu()"></div>
+
+    <nav class="header-mobile" id="header-mobile">
+        <img class="mobile-logo" src="arts/logo (2).png" alt="Logo Mobile" />
+
+        <div class="mobile-buttons">
+            <button class="mobile-button" onclick="window.location.href='index'">
+            <i class="fas fa-home mobile-button-icone"></i>
+            <p>Início</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='sobre-nos'">
+            <i class="fas fa-users mobile-button-icone"></i>
+            <p>Sobre nós</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='solucoes'">
+            <i class="fas fa-cogs mobile-button-icone"></i>
+            <p>Soluções</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='servicos'">
+            <i class="fas fa-tools mobile-button-icone"></i>
+            <p>Serviços</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='Resultado'">
+            <i class="fas fa-chart-line mobile-button-icone"></i>
+            <p>Resultados</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='faq'">
+            <i class="fas fa-question-circle mobile-button-icone"></i>
+            <p>FAQ</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='https://createc.com.br/atendimento'">
+            <i class="fas fa-headset mobile-button-icone"></i>
+            <p>Suporte</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='contato'">
+            <i class="fas fa-envelope mobile-button-icone"></i>
+            <p>Contato</p>
+          </button>
+            <button class="mobile-button" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart mobile-button-icone"></i>
+            <p>Carrinho</p>
+          </button>
+        </div>
+
+        <div class="mobile-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61574403354143" class="social-icon" id="facebook-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/createc.com.br" class="social-icon" id="instagram-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/createc.com.br/" class="social-icon" id="linkedin-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <p>&copy; Createc 2025. Todos os direitos reservados</p>
+    </nav>
+</header>
+
+<body>
+ <div class="overlay"></div>
+    <div class="text-box visible" id="textBox">
+        <h2 id="title" class="typing-text">
+            <span>Site Institucional para </span>
+            <span style="color: #3d9998;">Felix Assessoria</span>
+            <span class="cursor"></span>
+        </h2>
+        <p id="desc">Desenvolvemos um site institucional otimizado para SEO, focado na apresentação dos serviços e promoção especializada empresa.</p>
+        <button class="text-button" onclick="viewProject()">Ver Projeto</button>
+    </div>
+
+    <div class="cards" id="cardsContainer">
+        <div class="card position-0" id="card0">
+            <div class="card-image" style="background-image: url('/arts/Felix\ Acessoria.png');"></div>
+            <div class="card-content">
+                <div class="card-tags">
+                    <span class="card-tag primary">Website</span>
+                    <span class="card-tag secondary">SEO</span>
+                </div>
+                <h3 class="card-title">Site Institucional para Felix Assessoria</h3>
+                <div class="card-footer">
+                    <div class="company-info">
+                        <div class="company-logo" style="background-image: url('/arts/Felix\ Acessoria\ Logo.png');"></div>
+                        <span class="company-name">Felix Assessoria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card position-1" id="card1">
+            <div class="card-image" style="background-image: url('/arts/CristianBini.png');"></div>
+            <div class="card-content">
+                <div class="card-tags">
+                    <span class="card-tag primary">Portfólio</span>
+                    <span class="card-tag accent">Profissional</span>
+                </div>
+                <h3 class="card-title">Portfólio Web — Cristhian Bini</h3>
+                <div class="card-footer">
+                    <div class="company-info">
+                        <div class="company-logo" style="background-image: url('/arts/CristhianLogo.jpeg');"></div>
+                        <span class="company-name">Cristhian Bini</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card position-2" id="card2">
+            <div class="card-image" style="background-image: url('/arts/Piau\ Empregos.png');"></div>
+            <div class="card-content">
+                <div class="card-tags">
+                    <span class="card-tag secondary">API</span>
+                    <span class="card-tag primary">Pagamentos</span>
+                </div>
+                <h3 class="card-title">Backend da Plataforma Piauí Empregos</h3>
+                <div class="card-footer">
+                    <div class="company-info">
+                        <div class="company-logo" style="background-image: url('/arts/logo-piaui.png');"></div>
+                        <span class="company-name">Piauí Empregos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="change-btn" id="changeBtn" onclick="nextCard()">Próximo</button>
+    </div>
+ 
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-terms">
+            <button class="terms-toggle" aria-expanded="false" aria-controls="terms-dropdown">
+          Termos e Políticas
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </button>
+            <div id="terms-dropdown" class="terms-dropdown">
+                <a href="/Politicas-de-Privacidade/index.html" class="footer-link">Termos de Serviço</a
+          >
+          <a
+            href="/Politicas-de-Privacidade/privacy-policy.html"
+            class="footer-link"
+            >Política de Privacidade</a
+          >
+          <a id="cookieBtn" class="footer-link">Configuração de Cookies</a>
+            </div>
+        </div>
+
+        <p class="copyright">&copy; Createc 2025. Todos os direitos reservados</p>
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61574403354143" class="social-icon" id="facebook-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/createc.com.br" class="social-icon" id="instagram-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/groups/10078001" class="social-icon" id="linkedin-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
+    <script src="/login/auth.js"></script>
+    <script src="/login/header.js"></script>
+    <script src="carrinho.js"></script>
+    <script src="carrinho-cook.js"></script>
+     <script>
+       const cards = [
+            document.getElementById('card0'),
+            document.getElementById('card1'),
+            document.getElementById('card2')
+        ];
+
+        const textBox = document.getElementById('textBox');
+        const title = document.getElementById('title');
+        const desc = document.getElementById('desc');
+        const changeBtn = document.getElementById('changeBtn');
+
+        const infos = [
+            {
+                titleParts: [
+                    'Site Institucional para ',
+                    'Felix Assessoria.'
+                ],
+                desc: 'Desenvolvemos um site institucional otimizado para SEO, focado na apresentação dos serviços e promoção especializada empresa.',
+                bg: 'url("/arts/Felix\ Acessoria.png")',
+                accentColor: 'red'
+            },
+            {
+                titleParts: [
+                    'Portfólio Web — ',
+                    'Cristhian Bini.'
+                ],
+                desc: 'Criamos um site de portfólio completo para Cristhian Bini, reunindo certificados, serviços prestados e histórico profissional.',
+                bg: 'url("/arts/CristianBini.png")',
+                accentColor: 'red'
+            },
+            {
+                titleParts: [
+                    'Backend da Plataforma ',
+                    'Piauí Empregos.'
+                ],
+                desc: 'Criamos o backend completo da plataforma Piauí Empregos, com autenticação, cadastro e visualização de vagas.',
+                bg: 'url("/arts/Piau\ Empregos.png)',
+                accentColor: 'red'
+            }
+        ];
+
+        let index = 0;
+        let isTyping = false;
+
+        function typeText(text, container, color = 'white') {
+            return new Promise(resolve => {
+                container.innerHTML = '';
+                let charIndex = 0;
+                
+                function typeChar() {
+                    if (charIndex < text.length) {
+                        const span = document.createElement('span');
+                        span.textContent = text[charIndex];
+                        span.style.color = color;
+                        container.appendChild(span);
+                        
+                        setTimeout(() => {
+                            charIndex++;
+                            typeChar();
+                        }, 50);
+                    } else {
+                        resolve();
+                    }
+                }
+                
+                typeChar();
+            });
+        }
+
+        async function updateTitle() {
+            if (isTyping) return;
+            isTyping = true;
+
+            const info = infos[index];
+            title.innerHTML = '';
+
+            // Digitar primeira parte
+            const firstSpan = document.createElement('span');
+            title.appendChild(firstSpan);
+            await typeText(info.titleParts[0], firstSpan);
+
+            // Digitar segunda parte (nome destacado)
+            const secondSpan = document.createElement('span');
+            title.appendChild(secondSpan);
+            await typeText(info.titleParts[1], secondSpan, info.accentColor);
+
+            // Adicionar cursor
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            title.appendChild(cursor);
+
+            isTyping = false;
+        }
+
+        function updatePositions() {
+            cards.forEach((card, i) => {
+                card.className = 'card position-' + ((i - index + 3) % 3);
+            });
+
+            const info = infos[index];
+            desc.textContent = info.desc;
+            document.body.style.backgroundImage = info.bg;
+            
+            updateTitle();
+        }
+
+            function nextCard() {
+            console.log('NextCard chamado - Index atual:', index);
+            // Remover a verificação de isTyping temporariamente
+            index = (index + 1) % 3;
+            console.log('Novo index:', index);
+            
+            // Atualizar posições dos cards imediatamente
+            cards.forEach((card, i) => {
+                const newPosition = (i - index + 3) % 3;
+                card.className = 'card position-' + newPosition;
+                console.log(`Card ${i} -> position-${newPosition}`);
+            });
+
+            // Atualizar conteúdo
+            const info = infos[index];
+            desc.textContent = info.desc;
+            document.body.style.backgroundImage = info.bg;
+            
+            // Atualizar título sem animação para testar
+            title.innerHTML = `<span>${info.titleParts[0]}</span><span style="color: ${info.accentColor};">${info.titleParts[1]}</span><span class="cursor"></span>`;
+        }
+
+        function prevCard() {
+            if (isTyping) return;
+            index = (index - 1 + 3) % 3;
+            updatePositions();
+        }
+
+        function viewProject() {
+            alert('Visualizando projeto: ' + infos[index].titleParts.join(''));
+        }
+
+        // Inicializar
+        updatePositions();
+
+        // Auto-rotação a cada 5 segundos
+        setInterval(() => {
+            if (!isTyping) {
+                nextCard();
+            }
+        }, 5000);
+  </script>
+</body>
+
+</html>

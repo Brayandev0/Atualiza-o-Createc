@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Createc - Soluções em TI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <script type="module" src="faq.js" defer></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-64x64.png" />
+    <style>
+         :root {
+            --bg-color: #0f172a;
+            --bg-card: #1e293b;
+            --text-color: #ffffff;
+            --accent-color: #3b82f6;
+            --secondary-color: #64748b;
+            --hover-color: #2563eb;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --gradient-start: #3b82f6;
+            --gradient-end: #2dd4bf;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container-faq {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            margin-top: 5%;
+        }
+        
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background-color: var(--bg-card);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .rays {
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        
+        [data-theme="light"] .rays {
+            opacity: 1;
+        }
+        
+        [data-theme="dark"] .rays {
+            opacity: 0;
+        }
+        
+        .sun-moon {
+            transition: d 0.3s;
+        }
+        
+        [data-theme="light"] .sun-moon {
+            d: path("M12,2 A1,1 0 0,1 12,22 A1,1 0 0,1 12,2");
+        }
+        
+        [data-theme="dark"] .sun-moon {
+            d: path("M12,3 A6,6 0 0,0 12,21 A6,6 0 0,0 12,3 A1,1 0 0,0 12,3");
+        }
+        
+        .intro {
+            margin-top: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff2e7e, #8b002e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .intro p {
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        #search-faq {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            font-size: 1rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        #search-faq:focus {
+            outline: none;
+            box-shadow: 0 6px 12px var(--shadow-color);
+            transform: translateY(-2px);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-btn {
+            background-color: white;
+            color: var(--bg-color);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+            color: white;
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+        }
+        
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .faq-item {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-color);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .question-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: calc(100% - 30px);
+        }
+        
+        .faq-category-pill {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+            color: white;
+            width: fit-content;
+        }
+        
+        .faq-question h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.3s;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: white;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+        
+        .faq-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .faq-helpful,
+        .faq-share {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .faq-helpful:hover,
+        .faq-share:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .faq-helpful.active {
+            background-color: rgba(59, 130, 246, 0.2);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.5);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            font-weight: 500;
+            pointer-events: none;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+            animation: pulse-notification 2s;
+        }
+        
+        .no-results {
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .no-results-icon {
+            margin-bottom: 1rem;
+        }
+        
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .no-results p {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .reset-btn {
+            background: linear-gradient(45deg, #ff2e51, #8b002e);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(255, 0, 0, 0.3);
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<header>
+    <div class="container">
+        <div class="img">
+            <img src="arts/logo.png" alt="Logo" />
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Inicio</a></li>
+                <li><a href="sobre-nos" class="nav-link">Sobre Nós</a></li>
+                <li><a href="solucoes" class="nav-link">Soluções</a></li>
+                <li><a href="servicos" class="nav-link">Serviços</a></li>
+                <li><a href="Resultado" class="nav-link">Resultados</a></li>
+                <li><a href="faq" class="nav-link active">FAQ</a></li>
+                <li><a href="/atendimento" class="nav-link">Suporte</a></li>
+                <li><a href="contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-links-container">
+            <button class="cart-button" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+
+        <div class="menu-btn" onclick="toggleMenu()" id="menu-mobile">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items">
+                <p class="empty-cart">Seu carrinho está vazio</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="desfoque" id="desfoque-de-fundo-mobile" onclick="toggleMenu()"></div>
+
+    <nav class="header-mobile" id="header-mobile">
+        <img class="mobile-logo" src="arts/logo (2).png" alt="Logo Mobile" />
+
+        <div class="mobile-buttons">
+            <button class="mobile-button" onclick="window.location.href='index'">
+            <i class="fas fa-home mobile-button-icone"></i>
+            <p>Início</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='sobre-nos'">
+            <i class="fas fa-users mobile-button-icone"></i>
+            <p>Sobre nós</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='solucoes'">
+            <i class="fas fa-cogs mobile-button-icone"></i>
+            <p>Soluções</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='servicos'">
+            <i class="fas fa-tools mobile-button-icone"></i>
+            <p>Serviços</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='Resultado'">
+            <i class="fas fa-chart-line mobile-button-icone"></i>
+            <p>Resultados</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='faq'">
+            <i class="fas fa-question-circle mobile-button-icone"></i>
+            <p>FAQ</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='https://createc.com.br/atendimento'">
+            <i class="fas fa-headset mobile-button-icone"></i>
+            <p>Suporte</p>
+          </button>
+            <button class="mobile-button" onclick="window.location.href='contato'">
+            <i class="fas fa-envelope mobile-button-icone"></i>
+            <p>Contato</p>
+          </button>
+            <button class="mobile-button" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart mobile-button-icone"></i>
+            <p>Carrinho</p>
+          </button>
+        </div>
+
+        <div class="mobile-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61574403354143" class="social-icon" id="facebook-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/createc.com.br" class="social-icon" id="instagram-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/createc.com.br/" class="social-icon" id="linkedin-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <p>&copy; Createc 2025. Todos os direitos reservados</p>
+    </nav>
+</header>
+
+<body>
+
+    <div class="container-faq">
+        <!-- Introdução da FAQ -->
+        <div class="intro">
+            <h2>Perguntas Frequentes</h2>
+            <p style="color: white;">Encontre respostas para as perguntas mais comuns sobre nossos serviços e produtos de tecnologia.</p>
+
+            <!-- Caixa de pesquisa -->
+            <div class="search-container">
+                <input type="text" id="search-faq" placeholder="Pesquisar perguntas..." onkeyup="searchFAQ()">
+                <svg viewBox="0 0 24 24" width="20" height="20" class="search-icon">
+                    <circle cx="11" cy="11" r="7" fill="none" stroke="var(--secondary-color)" stroke-width="2" />
+                    <path d="M16,16 L21,21" stroke="var(--secondary-color)" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
+
+            <!-- Filtro de categorias -->
+            <div class="category-filter" id="category-filter">
+                <!-- As categorias serão carregadas do arquivo config.js -->
+            </div>
+        </div>
+
+        <!-- Lista de perguntas frequentes (FAQ) -->
+        <div class="faq-container" id="faq-list">
+            <!-- FAQ Exemplo -->
+            <div class="faq-item">
+                <h3>Como posso começar a usar o serviço?</h3>
+                <p>Você pode começar criando uma conta em nosso site e selecionando o serviço que melhor atende às suas necessidades.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Quais tecnologias vocês utilizam?</h3>
+                <p>Utilizamos tecnologias modernas como JavaScript, Python, Node.js, React e muitas outras.</p>
+            </div>
+            <!-- Adicione mais itens conforme necessário -->
+        </div>
+    </div>
+
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-terms">
+            <button class="terms-toggle" aria-expanded="false" aria-controls="terms-dropdown">
+          Termos e Políticas
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </button>
+            <div id="terms-dropdown" class="terms-dropdown">
+                <a href="/Politicas-de-Privacidade/index.html" class="footer-link">Termos de Serviço</a
+          >
+          <a
+            href="/Politicas-de-Privacidade/privacy-policy.html"
+            class="footer-link"
+            >Política de Privacidade</a
+          >
+          <a id="cookieBtn" class="footer-link">Configuração de Cookies</a>
+            </div>
+        </div>
+
+        <p class="copyright">&copy; Createc 2025. Todos os direitos reservados</p>
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61574403354143" class="social-icon" id="facebook-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/createc.com.br" class="social-icon" id="instagram-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/groups/10078001" class="social-icon" id="linkedin-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
+    <script src="/login/auth.js"></script>
+    <script src="/login/header.js"></script>
+    <script src="carrinho.js"></script>
+    <script src="carrinho-cook.js"></script>
+</body>
+
+</html>

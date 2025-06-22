@@ -1,0 +1,269 @@
+body {
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: clamp(250px, 25%, 500px);
+    justify-content: center;
+}
+
+.about-container {
+    /* Div que contem todo o condtudo da pagina*/
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.tiulo-menor {
+    /* Aquele mini titulo do começo 'sobre nos' e 'nossos servicos'*/
+    letter-spacing: 5px;
+    color: #000000;
+    font-weight: 400;
+    font-size: 1.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.titulo-maior {
+    /* O titulo grande, principal da pagfina 'inovando e creiando...' */
+    font-family: 'Questrial', serif;
+    letter-spacing: 7px;
+    line-height: 1.2;
+    font-size: 2.5rem;
+    color: #000000;
+    border-left: solid 6px #7d0c4b;
+    padding-left: 20px;
+}
+
+.texto {
+    /* Classe que abrigs o texto da leve descrição sobre empresa (que imclusive precisa editar conteúdo, nao tem nada haver */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #000000;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.div-um {
+    /* Div que abriga o conteudo do lado esquerdo da pagina (sobre a empresa) */
+    width: clamp(400px, 30%, 600px);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: 10%;
+}
+
+.div-dois {
+    /* Div que abriga o conteudo do lado direito da pagina (soluções) */
+    width: clamp(400px, 30%, 600px);
+}
+
+.button-container {
+    /* Div que abriga o botão de fale conosoc, para posicionalo conforme vossa vontade*/
+    height: 5vh;
+    text-align: left;
+    margin-top: 5vh;
+}
+
+.button-container button {
+    /* Configurações do botao*/
+    font-family: "Poppins", serif;
+    background: linear-gradient(45deg, #ff2e51, #8b002e);
+    color: #d9d9d9;
+    font-size: 1.5rem;
+    padding: 2% 5%;
+    border: none;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+.div-um button:hover {
+    /* Configuração de quando o ponteiro do mouse estiver sobre o botao */
+    text-decoration: none;
+    transform: scale(104%);
+    cursor: pointer;
+}
+
+.div-dois .tiulo-menor {
+    /*Diminui o titulo pequeno 'sobre nos' do esquerdo da pagina*/
+    margin-left: 10%;
+}
+
+.service img {
+    /* Configurei o tamanho da imagem dos sewrviços*/
+    width: clamp(50px, 15%, 150px);
+    height: 0%;
+    margin-right: 5%;
+}
+
+.service p {
+    /* Configurei o texto dos serviços (descriçlão deles)*/
+    color: rgb(0, 0, 0);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    font-size: 1, 2rem;
+    text-align: justify;
+    width: 60%;
+    letter-spacing: 1.1px;
+    line-height: 1.5;
+}
+
+.service {
+    /*Configurei a div serviço (que abriga a descrição e a imagem do serviço)*/
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+        /*Tornei possivel rolar a tela*/
+        background-image: none;
+    }
+    .aboutus-found {
+        /*Removi a img criminosa (fundo) da pagina no mobile. Eu nao removi agora porque nao deu, mas ela é um erro (tremendo, mas nao causa bugs)*/
+        display: none;
+    }
+    .about-container {
+        /* Defini o container da pagina para deixar tudo em colunas retas (ao inves de ficar de lado, ficam empilhados)*/
+        width: 100vw;
+        position: absolute;
+        margin-top: 8vh;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .div-um,
+    .div-dois {
+        /*Defini para que as duas divs que abrigam cada parte do conmteudo nao ocupassem 100% da tela, para respeitar o limite*/
+        width: 80%;
+        margin: 0px;
+        margin-right: 4%;
+    }
+    .titulo-maior {
+        /* Titulo da pagina que diz 'inovando e ...' mudei o tamanho*/
+        font-size: 1.5rem;
+    }
+    .div-dois {
+        /* Coloquei uma distancia entere a div do lado esquerdo e o topo da pagina*/
+        margin-top: 5vh;
+    }
+    .div-dois .tiulo-menor {
+        /* Tirei a margin left */
+        margin-left: 0%;
+    }
+    .service p {
+        color: rgb(0, 0, 0);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 700;
+        font-size: 1, 2rem;
+        text-align: justify;
+        width: 80%;
+        letter-spacing: 1.1px;
+        line-height: 1.5;
+    }
+    .service {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1050px) and (min-width: 768px) {
+    body {
+        background-color: #f5f5f5;
+        background-image: url(/arts/aboutus-fundo.png);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: clamp(250px, 25%, 500px);
+        justify-content: center;
+    }
+    .about-container {
+        /* Div que contem todo o condtudo da pagina*/
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+    .tiulo-menor {
+        /* Aquele mini titulo do começo 'sobre nos' e 'nossos servicos'*/
+        letter-spacing: 5px;
+        color: #000000;
+        font-weight: 400;
+        font-size: 1.6rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .titulo-maior {
+        /* O titulo grande, principal da pagfina 'inovando e creiando...' */
+        font-family: 'Questrial', serif;
+        letter-spacing: 7px;
+        line-height: 1.2;
+        font-size: 1.5rem;
+        color: #000000;
+        border-left: solid 6px #7d0c4b;
+        padding-left: 20px;
+    }
+    .texto {
+        /* Classe que abrigs o texto da leve descrição sobre empresa (que imclusive precisa editar conteúdo, nao tem nada haver */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #000000;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        line-height: 1.7;
+        text-align: justify;
+    }
+    .div-um {
+        /* Div que abriga o conteudo do lado esquerdo da pagina (sobre a empresa) */
+        width: clamp(400px, 30%, 600px);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin-right: 10%;
+    }
+    .div-dois {
+        /* Div que abriga o conteudo do lado direito da pagina (soluções) */
+        width: clamp(400px, 30%, 600px);
+    }
+    .button-container {
+        /* Div que abriga o botão de fale conosoc, para posicionalo conforme vossa vontade*/
+        height: 5vh;
+        text-align: left;
+        margin-top: 5vh;
+    }
+    .button-container button {
+        /* Configurações do botao*/
+        font-family: "Cormorant Garamond", serif;
+        background-color: #7d0c4b;
+        color: #d9d9d9;
+        font-size: 1rem;
+        padding: 2% 5%;
+        border: none;
+        font-weight: 600;
+    }
+    .div-um button:hover {
+        /* Configuração de quando o ponteiro do mouse estiver sobre o botao */
+        text-decoration: underline;
+        transform: scale(104%);
+        cursor: pointer;
+    }
+    .div-dois .tiulo-menor {
+        /*Diminui o titulo pequeno 'sobre nos' do esquerdo da pagina*/
+        margin-left: 10%;
+    }
+    .service img {
+        /* Configurei o tamanho da imagem dos sewrviços*/
+        width: clamp(50px, 15%, 150px);
+        height: 0%;
+        margin-right: 5%;
+    }
+    .service p {
+        /* Configurei o texto dos serviços (descriçlão deles)*/
+        color: rgb(0, 0, 0);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-align: justify;
+        width: 60%;
+        letter-spacing: 1.1px;
+        line-height: 1.5;
+    }
+    .service {
+        /*Configurei a div serviço (que abriga a descrição e a imagem do serviço)*/
+        display: flex;
+        align-items: center;
+    }
+}

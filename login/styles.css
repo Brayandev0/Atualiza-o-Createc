@@ -1,0 +1,623 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: clamp(250px, 50%, 500px);
+    height: clamp(250px, 50%, 500px);
+    background-image: url(/arts/aboutus-fundo.png);
+    background-size: cover;
+    transform: rotate(180deg);
+    background-position: left top;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: clamp(250px, 50%, 500px);
+    height: clamp(250px, 60%, 600px);
+    background-image: url(/arts/aboutus-fundo.png);
+    background-size: cover;
+    background-position: right bottom;
+    z-index: -1;
+    bottom: -5%;
+}
+
+
+/* Container principal da página de login */
+
+.pagina-login {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 650px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Estilo do painel esquerdo com fundo azul */
+
+.painel-esquerdo {
+    flex: 1;
+    background: linear-gradient(135deg, #741338, #790934);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Decoração de fundo do painel esquerdo */
+
+.painel-esquerdo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveBackground 20s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+
+/* Conteúdo do painel esquerdo */
+
+.conteudo-esquerdo {
+    position: relative;
+    z-index: 1;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+
+/* Logo da empresa */
+
+.logo {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+}
+
+.logo-imagem {
+    max-width: 380px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+
+/* Título de boas-vindas */
+
+.titulo-boas-vindas {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #fff, #f8f9fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Texto descritivo */
+
+.texto-descricao {
+    font-size: 18px;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0 auto 40px auto;
+    /* centraliza horizontalmente e mantém margin-bottom */
+    text-align: start;
+    /* centraliza o texto dentro da div */
+}
+
+
+/* Botão de voltar ao site */
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+}
+
+.botao-voltar:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Painel direito com formulário */
+
+.painel-direito {
+    flex: 1;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.painel-direito::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="2" fill="rgba(116, 19, 56, 0.05)"/></svg>');
+    opacity: 0.3;
+}
+
+
+/* Conteúdo do painel direito */
+
+.conteudo-direito {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+    animation: slideInRight 0.8s ease-out;
+}
+
+
+/* Título do formulário */
+
+.titulo-formulario {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+
+/* Subtítulo do formulário */
+
+.subtitulo-formulario {
+    color: #666;
+    margin-bottom: 35px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+
+/* Grupo de campo de entrada */
+
+.grupo-campo {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.grupo-campo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(232, 26, 88, 0.1), rgba(183, 21, 69, 0.1));
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.grupo-campo:focus-within::before {
+    opacity: 1;
+}
+
+
+/* Campo de entrada */
+
+.campo-entrada {
+    width: 100%;
+    padding: 18px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.campo-entrada:focus {
+    border-color: #e81a58;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 26, 88, 0.1);
+    transform: translateY(-2px);
+}
+
+.campo-entrada::placeholder {
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+
+/* Estilo para o campo de senha com botão de mostrar */
+
+.campo-senha {
+    position: relative;
+}
+
+.botao-mostrar-senha {
+    position: absolute;
+    right: 5px;
+    top: 37%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #adb5bd;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.botao-mostrar-senha:hover {
+    color: #e81a58;
+    background: rgba(232, 26, 88, 0.1);
+}
+
+.icone-olho {
+    display: block;
+}
+
+
+/* Opções de login (lembrar usuário e esqueci senha) */
+
+.opcoes-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+/* Lembrar usuário */
+
+.lembrar-usuario {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Caixa de seleção personalizada */
+
+.caixa-selecao {
+    margin-right: 8px;
+    accent-color: #7c0f3d;
+}
+
+
+/* Texto para lembrar */
+
+.texto-lembrar {
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* Link para esqueci senha */
+
+.esqueci-senha {
+    font-size: 14px;
+    color: #e81a5f;
+    text-decoration: none;
+}
+
+.esqueci-senha:hover {
+    text-decoration: underline;
+}
+
+
+/* Botão de entrar */
+
+.botao-entrar {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #e81a58, #b71545);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    box-shadow: 0 8px 25px rgba(232, 26, 88, 0.3);
+}
+
+.botao-entrar:hover {
+    background: linear-gradient(135deg, #b71545, #8b0d2d);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(232, 26, 88, 0.4);
+}
+
+.botao-entrar:active {
+    transform: translateY(0);
+}
+
+
+/* Rodapé do formulário */
+
+.rodape-login {
+    text-align: center;
+    margin-top: 35px;
+}
+
+
+/* Texto sem conta */
+
+.sem-conta {
+    font-size: 15px;
+    color: #666;
+}
+
+
+/* Link para cadastro */
+
+.link-cadastro {
+    color: #e81a58;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.link-cadastro:hover {
+    color: #b71545;
+    text-decoration: underline;
+}
+
+
+/* Estilos para validação e mensagens de erro */
+
+.mensagem-erro {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    min-height: 18px;
+    transition: all 0.3s ease;
+    padding-left: 5px;
+}
+
+.campo-invalido {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+.campo-valido {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+}
+
+.mensagem-sistema {
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.mensagem-sistema.erro {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.mensagem-sistema.sucesso {
+    background: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.mensagem-sistema.info {
+    background: rgba(13, 202, 240, 0.1);
+    border: 1px solid rgba(13, 202, 240, 0.2);
+    color: #0dcaf0;
+}
+
+.mensagem-sistema.aviso {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    color: #ff6f00;
+}
+
+.escondido {
+    display: none;
+}
+
+.mensagem-sistema.escondido {
+    display: none;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Efeito de loading no botão */
+
+.botao-entrar.carregando {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.botao-entrar.carregando::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Estilos para campos válidos e inválidos com ícones */
+
+.campo-entrada.campo-valido {
+    border-color: #2ecc71;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232ecc71' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.campo-entrada.campo-invalido {
+    border-color: #e74c3c;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='15' y1='9' x2='9' y2='15'%3E%3C/line%3E%3Cline x1='9' y1='9' x2='15' y2='15'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+
+/* Campo com botão de mostrar senha */
+
+.campo-senha .campo-entrada.campo-valido,
+.campo-senha .campo-entrada.campo-invalido {
+    background-position: right 40px center;
+}
+
+
+/* Animações de entrada */
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+    body {
+        padding: 10px;
+    }
+    .pagina-login {
+        flex-direction: column;
+        max-width: 100%;
+        min-height: auto;
+        border-radius: 15px;
+        text-align: center;
+    }
+    .painel-esquerdo {
+        padding: 40px 30px;
+        text-align: center;
+    }
+    .titulo-boas-vindas {
+        font-size: 32px;
+    }
+    .painel-direito {
+        padding: 40px 30px;
+    }
+    .logo {
+        margin-bottom: 30px;
+    }
+    .texto-descricao {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .painel-esquerdo,
+    .painel-direito {
+        padding: 30px 20px;
+    }
+    .titulo-boas-vindas {
+        font-size: 28px;
+    }
+    .titulo-formulario {
+        font-size: 24px;
+    }
+}

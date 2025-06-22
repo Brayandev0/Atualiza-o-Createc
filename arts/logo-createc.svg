@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <path d="M50 10 L80 50 L50 90 L20 50 Z" fill="#8C1D40"/>
+    <circle cx="50" cy="50" r="30" fill="#8C1D40"/>
+    <text x="50" y="120" text-anchor="middle" font-size="20" fill="#000000" font-weight="bold">Createc</text>
+</svg>
+

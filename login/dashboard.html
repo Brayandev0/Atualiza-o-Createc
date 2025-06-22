@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Createc - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-64x64.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .info-usuario {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar-usuario {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        
+        .nome-usuario {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .email-usuario {
+            color: #666;
+            margin: 2px 0 0 0;
+            font-size: 14px;
+        }
+        
+        .acoes-usuario {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .botao-sair {
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .botao-sair:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .conteudo-dashboard {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .titulo-boas-vindas {
+            font-size: 24px;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="cabecalho">
+            <div class="logo">
+                <img src="/arts/logo-sem-fundo.png" alt="Logo da Empresa" style="height: 40px;">
+            </div>
+            
+            <div class="info-usuario">
+                <div class="avatar-usuario" id="avatar-iniciais">JS</div>
+                <div class="detalhes-usuario">
+                    <p class="nome-usuario" id="nome-usuario">Carregando...</p>
+                    <p class="email-usuario" id="email-usuario">Carregando...</p>
+                </div>
+            </div>
+            
+            <div class="acoes-usuario">
+                <button type="button" class="botao-sair" id="botao-sair">Sair</button>
+            </div>
+        </header>
+        
+        <div class="conteudo-dashboard">
+            <h1 class="titulo-boas-vindas" id="mensagem-boas-vindas">Bem-vindo!</h1>
+            <p>Esta é a área restrita do sistema. Você está logado com sucesso.</p>
+            
+            <p>Seu login está salvo por 7 dias, o que significa que você não precisará fazer login novamente neste dispositivo durante esse período.</p>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript para a página de dashboard
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do DOM
+    const nomeUsuarioElement = document.getElementById('nome-usuario');
+    const emailUsuarioElement = document.getElementById('email-usuario');
+    const avatarIniciaisElement = document.getElementById('avatar-iniciais');
+    const mensagemBoasVindasElement = document.getElementById('mensagem-boas-vindas');
+    const botaoSair = document.getElementById('botao-sair');
+    
+    // Verificar se o usuário está logado
+    verificarAutenticacao();
+    
+    // Adicionar listener para o botão de sair
+    botaoSair.addEventListener('click', function() {
+        realizarLogout();
+    });
+    
+    // Funções de verificação de autenticação e logout
+    
+    function verificarAutenticacao() {
+        // Verificar se há um token válido
+        const token = obterToken();
+        const usuarioLogado = obterUsuarioLogado();
+        
+        if (!token || !validarToken(token) || !usuarioLogado) {
+            // Usuário não está autenticado, redirecionar para login
+            redirecionarParaLogin();
+            return;
+        }
+        
+        // Atualizar interface com dados do usuário
+        atualizarInterfaceUsuario(usuarioLogado);
+    }
+    
+    function atualizarInterfaceUsuario(usuario) {
+        // Exibir nome e email
+        nomeUsuarioElement.textContent = usuario.nome;
+        emailUsuarioElement.textContent = usuario.email;
+        
+        // Gerar iniciais para o avatar
+        const iniciais = obterIniciaisNome(usuario.nome);
+        avatarIniciaisElement.textContent = iniciais;
+        
+        // Atualizar mensagem de boas-vindas
+        const horaAtual = new Date().getHours();
+        let saudacao = 'Bem-vindo';
+        
+        if (horaAtual < 12) {
+            saudacao = 'Bom dia';
+        } else if (horaAtual < 18) {
+            saudacao = 'Boa tarde';
+        } else {
+            saudacao = 'Boa noite';
+        }
+        
+        mensagemBoasVindasElement.textContent = `${saudacao}, ${usuario.nome}!`;
+    }
+    
+    function realizarLogout() {
+        // Limpar dados de sessão
+        limparSessao();
+        
+        // Redirecionar para página de login
+        redirecionarParaLogin();
+    }
+    
+    function redirecionarParaLogin() {
+        window.location.href = 'login.html';
+    }
+    
+    // Funções de utilidade
+    
+    function obterIniciaisNome(nomeCompleto) {
+        if (!nomeCompleto) return '?';
+        
+        const partes = nomeCompleto.trim().split(' ');
+        
+        if (partes.length === 1) {
+            return partes[0].charAt(0).toUpperCase();
+        }
+        
+        const primeiraInicial = partes[0].charAt(0);
+        const ultimaInicial = partes[partes.length - 1].charAt(0);
+        
+        return (primeiraInicial + ultimaInicial).toUpperCase();
+    }
+    
+    function obterToken() {
+        const tokenString = localStorage.getItem('authToken');
+        return tokenString ? JSON.parse(tokenString) : null;
+    }
+    
+    function obterUsuarioLogado() {
+        const usuarioString = sessionStorage.getItem('usuarioLogado');
+        return usuarioString ? JSON.parse(usuarioString) : null;
+    }
+    
+    function validarToken(token) {
+        // Verificar se o token ainda não expirou
+        const agora = new Date().getTime();
+        return token.exp > agora;
+    }
+    
+    function limparSessao() {
+        localStorage.removeItem('authToken');
+        sessionStorage.removeItem('usuarioLogado');
+    }
+});
+    </script>
+</body>
+</html>

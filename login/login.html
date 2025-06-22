@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Createc - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-64x64.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div class="pagina-login">
+        <div class="painel-esquerdo">
+            <div class="conteudo-esquerdo">
+                <div class="logo">
+                    <img src="/arts/Logo-Slogan-Sem-fundo-letra-branca.png" alt="Logo da Empresa" class="logo-imagem">
+                </div>
+                <h1 class="titulo-boas-vindas">BEM-VINDO DE VOLTA</h1>
+                <p class="texto-descricao">É bom ver você novamente! Por favor, faça o login na sua conta.</p>
+                <a href="/index.html" class="botao-voltar">Voltar ao site</a>
+            </div>
+        </div>
+
+        <div class="painel-direito">
+            <div class="conteudo-direito">
+                <h2 class="titulo-formulario">Acessar Conta</h2>
+                <p class="subtitulo-formulario">Preencha seus dados para continuar</p>
+
+                <!-- Área para mensagens de alerta do sistema -->
+                <div id="mensagem-sistema" class="mensagem-sistema escondido"></div>
+
+                <form class="formulario-login" id="formulario-login">
+                    <div class="grupo-campo">
+                        <input type="email" id="email" class="campo-entrada" placeholder="E-mail" required>
+                        <div id="erro-email" class="mensagem-erro"></div>
+                    </div>
+
+                    <div class="grupo-campo campo-senha">
+                        <input type="password" id="senha" class="campo-entrada" placeholder="Senha" required>
+                        <button type="button" class="botao-mostrar-senha">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icone-olho">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <div id="erro-senha" class="mensagem-erro"></div>
+                    </div>
+
+                    <div class="opcoes-login">
+                        <div class="lembrar-usuario">
+                            <input type="checkbox" id="lembrar" class="caixa-selecao" checked>
+                            <label for="lembrar" class="texto-lembrar">Lembrar meu acesso</label>
+                        </div>
+                        <a href="recuperar-senha.html" class="esqueci-senha">Esqueceu a senha?</a>
+                    </div>
+
+                    <button type="submit" class="botao-entrar" id="botao-login">ENTRAR</button>
+
+                    <div class="rodape-login">
+                        <p class="sem-conta">Ainda não tem uma conta? <a href="cadastro.html" class="link-cadastro">Cadastre-se</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
