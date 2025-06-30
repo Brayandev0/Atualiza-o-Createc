@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: #fee;
             }
 
-            @media (max-width: 1024px) {
+            @media (max-width: 102px) {
                 .perfil-button, .login-button {
                     display: none;
                 }

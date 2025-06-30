@@ -60,11 +60,10 @@ header {
 
 header .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 70px;
-    width: 98%;
-    margin-right: 0%;
+    max-width: 100%;
 }
 
 
@@ -85,7 +84,6 @@ header .container {
     display: flex;
     list-style: none;
     gap: 5px;
-    margin-left: 100px;
 }
 
 .nav-link {
@@ -715,7 +713,7 @@ footer div {
 }
 
 
-/* Esconder o hheader do mobile no pc*/
+/* Esconder o header do mobile no pc*/
 
 .header-mobile {
     display: none;
@@ -724,7 +722,7 @@ footer div {
 
 /* Responsive adjustments */
 
-@media (max-width: 1200px) {}
+
 
 @media (max-width: 1200px) {
     .modal-content {
@@ -734,7 +732,7 @@ footer div {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1221px) {
     header .container .nav {
         display: none;
     }
@@ -820,9 +818,7 @@ footer div {
         /* Div que contem o header mobile */
         position: fixed;
         z-index: 1001;
-        top: 0;
-        left: 0;
-        height: 100%;
+        height: 70px;
         width: 80%;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         background-color: #f6f4f4;

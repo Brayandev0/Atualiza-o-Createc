@@ -12,14 +12,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <script type="module" src="faq.js" defer></script>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-64x64.png" />
     <style>
-         :root {
+        :root {
             --bg-color: #0f172a;
             --bg-card: #1e293b;
             --text-color: #ffffff;
@@ -30,12 +32,13 @@
             --gradient-start: #3b82f6;
             --gradient-end: #2dd4bf;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         .container-faq {
             max-width: 1200px;
             margin: 0 auto;
@@ -44,7 +47,7 @@
             z-index: 1;
             margin-top: 5%;
         }
-        
+
         .theme-toggle {
             cursor: pointer;
             padding: 0.5rem;
@@ -56,42 +59,42 @@
             box-shadow: 0 4px 6px var(--shadow-color);
             transition: transform 0.3s;
         }
-        
+
         .theme-toggle:hover {
             transform: scale(1.1);
         }
-        
+
         .rays {
             opacity: 1;
             transition: opacity 0.3s;
         }
-        
+
         [data-theme="light"] .rays {
             opacity: 1;
         }
-        
+
         [data-theme="dark"] .rays {
             opacity: 0;
         }
-        
+
         .sun-moon {
             transition: d 0.3s;
         }
-        
+
         [data-theme="light"] .sun-moon {
             d: path("M12,2 A1,1 0 0,1 12,22 A1,1 0 0,1 12,2");
         }
-        
+
         [data-theme="dark"] .sun-moon {
             d: path("M12,3 A6,6 0 0,0 12,21 A6,6 0 0,0 12,3 A1,1 0 0,0 12,3");
         }
-        
+
         .intro {
             margin-top: 1rem;
             text-align: center;
             margin-bottom: 2rem;
         }
-        
+
         .intro h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -100,20 +103,20 @@
             background-clip: text;
             color: transparent;
         }
-        
+
         .intro p {
             color: var(--secondary-color);
             max-width: 600px;
             margin: 0 auto 2rem;
             font-size: 1.1rem;
         }
-        
+
         .search-container {
             position: relative;
             max-width: 500px;
             margin: 0 auto 2rem;
         }
-        
+
         #search-faq {
             width: 100%;
             padding: 1rem 3rem 1rem 1.5rem;
@@ -125,20 +128,20 @@
             box-shadow: 0 4px 6px var(--shadow-color);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         #search-faq:focus {
             outline: none;
             box-shadow: 0 6px 12px var(--shadow-color);
             transform: translateY(-2px);
         }
-        
+
         .search-icon {
             position: absolute;
             right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
         }
-        
+
         .category-filter {
             display: flex;
             flex-wrap: wrap;
@@ -146,7 +149,7 @@
             gap: 0.5rem;
             margin-bottom: 2rem;
         }
-        
+
         .category-btn {
             background-color: white;
             color: var(--bg-color);
@@ -158,25 +161,25 @@
             transition: all 0.3s;
             box-shadow: 0 2px 4px var(--shadow-color);
         }
-        
+
         .category-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px var(--shadow-color);
         }
-        
+
         .category-btn.active {
             background: linear-gradient(45deg, #ff2e51, #8b002e);
             color: white;
             box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
         }
-        
+
         .faq-container {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             margin-bottom: 3rem;
         }
-        
+
         .faq-item {
             background-color: var(--bg-card);
             border-radius: 10px;
@@ -184,12 +187,12 @@
             box-shadow: 0 4px 6px var(--shadow-color);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .faq-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px var(--shadow-color);
         }
-        
+
         .faq-question {
             padding: 1.5rem;
             display: flex;
@@ -201,14 +204,14 @@
             overflow: hidden;
             background-color: white;
         }
-        
+
         .question-content {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             width: calc(100% - 30px);
         }
-        
+
         .faq-category-pill {
             display: inline-block;
             font-size: 0.7rem;
@@ -218,16 +221,16 @@
             color: white;
             width: fit-content;
         }
-        
+
         .faq-question h3 {
             font-size: 1.2rem;
             font-weight: 600;
         }
-        
+
         .faq-icon {
             transition: transform 0.3s;
         }
-        
+
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -237,22 +240,22 @@
             color: var(--secondary-color);
             background-color: white;
         }
-        
+
         .faq-item.active .faq-icon {
             transform: rotate(45deg);
         }
-        
+
         .faq-item.active .faq-answer {
             max-height: 1000px;
             padding: 0 1.5rem 1.5rem 1.5rem;
         }
-        
+
         .faq-actions {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .faq-helpful,
         .faq-share {
             display: flex;
@@ -267,20 +270,20 @@
             transition: all 0.3s;
             font-size: 0.9rem;
         }
-        
+
         .faq-helpful:hover,
         .faq-share:hover {
             background-color: rgba(59, 130, 246, 0.1);
             border-color: var(--accent-color);
             color: var(--accent-color);
         }
-        
+
         .faq-helpful.active {
             background-color: rgba(59, 130, 246, 0.2);
             border-color: var(--accent-color);
             color: var(--accent-color);
         }
-        
+
         .notification {
             position: fixed;
             bottom: 20px;
@@ -297,13 +300,13 @@
             font-weight: 500;
             pointer-events: none;
         }
-        
+
         .notification.show {
             opacity: 1;
             transform: translateX(-50%) scale(1);
             animation: pulse-notification 2s;
         }
-        
+
         .no-results {
             border-radius: 10px;
             padding: 3rem;
@@ -313,21 +316,21 @@
             align-items: center;
             gap: 1rem;
         }
-        
+
         .no-results-icon {
             margin-bottom: 1rem;
         }
-        
+
         .no-results h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .no-results p {
             color: var(--secondary-color);
             margin-bottom: 1.5rem;
         }
-        
+
         .reset-btn {
             background: linear-gradient(45deg, #ff2e51, #8b002e);
             color: white;
@@ -339,7 +342,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 6px rgba(255, 0, 0, 0.3);
         }
-        
+
         .reset-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
@@ -367,8 +370,8 @@
 
         <div class="header-links-container">
             <button class="cart-button" onclick="toggleCart()">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
+                <i class="fas fa-shopping-cart"></i>
+            </button>
         </div>
 
         <div class="menu-btn" onclick="toggleMenu()" id="menu-mobile">
@@ -376,16 +379,16 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-    </div>
 
-    <div class="cart-popup" id="cart-popup">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Meu Carrinho</h3>
-                <button class="close-cart" onclick="toggleCart()">×</button>
-            </div>
-            <div class="cart-items">
-                <p class="empty-cart">Seu carrinho está vazio</p>
+        <div class="cart-popup" id="cart-popup">
+            <div class="cart-content">
+                <div class="cart-header">
+                    <h3>Meu Carrinho</h3>
+                    <button class="close-cart" onclick="toggleCart()">×</button>
+                </div>
+                <div class="cart-items">
+                    <p class="empty-cart">Seu carrinho está vazio</p>
+                </div>
             </div>
         </div>
     </div>
@@ -397,41 +400,41 @@
 
         <div class="mobile-buttons">
             <button class="mobile-button" onclick="window.location.href='index'">
-            <i class="fas fa-home mobile-button-icone"></i>
-            <p>Início</p>
-          </button>
+                <i class="fas fa-home mobile-button-icone"></i>
+                <p>Início</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='sobre-nos'">
-            <i class="fas fa-users mobile-button-icone"></i>
-            <p>Sobre nós</p>
-          </button>
+                <i class="fas fa-users mobile-button-icone"></i>
+                <p>Sobre nós</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='solucoes'">
-            <i class="fas fa-cogs mobile-button-icone"></i>
-            <p>Soluções</p>
-          </button>
+                <i class="fas fa-cogs mobile-button-icone"></i>
+                <p>Soluções</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='servicos'">
-            <i class="fas fa-tools mobile-button-icone"></i>
-            <p>Serviços</p>
-          </button>
+                <i class="fas fa-tools mobile-button-icone"></i>
+                <p>Serviços</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='Resultado'">
-            <i class="fas fa-chart-line mobile-button-icone"></i>
-            <p>Resultados</p>
-          </button>
+                <i class="fas fa-chart-line mobile-button-icone"></i>
+                <p>Resultados</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='faq'">
-            <i class="fas fa-question-circle mobile-button-icone"></i>
-            <p>FAQ</p>
-          </button>
+                <i class="fas fa-question-circle mobile-button-icone"></i>
+                <p>FAQ</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='https://createc.com.br/atendimento'">
-            <i class="fas fa-headset mobile-button-icone"></i>
-            <p>Suporte</p>
-          </button>
+                <i class="fas fa-headset mobile-button-icone"></i>
+                <p>Suporte</p>
+            </button>
             <button class="mobile-button" onclick="window.location.href='contato'">
-            <i class="fas fa-envelope mobile-button-icone"></i>
-            <p>Contato</p>
-          </button>
+                <i class="fas fa-envelope mobile-button-icone"></i>
+                <p>Contato</p>
+            </button>
             <button class="mobile-button" onclick="toggleCart()">
-            <i class="fas fa-shopping-cart mobile-button-icone"></i>
-            <p>Carrinho</p>
-          </button>
+                <i class="fas fa-shopping-cart mobile-button-icone"></i>
+                <p>Carrinho</p>
+            </button>
         </div>
 
         <div class="mobile-social-icons">
@@ -456,7 +459,8 @@
         <!-- Introdução da FAQ -->
         <div class="intro">
             <h2>Perguntas Frequentes</h2>
-            <p style="color: white;">Encontre respostas para as perguntas mais comuns sobre nossos serviços e produtos de tecnologia.</p>
+            <p style="color: white;">Encontre respostas para as perguntas mais comuns sobre nossos serviços e produtos
+                de tecnologia.</p>
 
             <!-- Caixa de pesquisa -->
             <div class="search-container">
@@ -478,7 +482,8 @@
             <!-- FAQ Exemplo -->
             <div class="faq-item">
                 <h3>Como posso começar a usar o serviço?</h3>
-                <p>Você pode começar criando uma conta em nosso site e selecionando o serviço que melhor atende às suas necessidades.</p>
+                <p>Você pode começar criando uma conta em nosso site e selecionando o serviço que melhor atende às suas
+                    necessidades.</p>
             </div>
             <div class="faq-item">
                 <h3>Quais tecnologias vocês utilizam?</h3>
@@ -499,18 +504,13 @@
     <footer>
         <div class="footer-terms">
             <button class="terms-toggle" aria-expanded="false" aria-controls="terms-dropdown">
-          Termos e Políticas
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </button>
+                Termos e Políticas
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </button>
             <div id="terms-dropdown" class="terms-dropdown">
-                <a href="/Politicas-de-Privacidade/index.html" class="footer-link">Termos de Serviço</a
-          >
-          <a
-            href="/Politicas-de-Privacidade/privacy-policy.html"
-            class="footer-link"
-            >Política de Privacidade</a
-          >
-          <a id="cookieBtn" class="footer-link">Configuração de Cookies</a>
+                <a href="/Politicas-de-Privacidade/index.html" class="footer-link">Termos de Serviço</a>
+                <a href="/Politicas-de-Privacidade/privacy-policy.html" class="footer-link">Política de Privacidade</a>
+                <a id="cookieBtn" class="footer-link">Configuração de Cookies</a>
             </div>
         </div>
 
