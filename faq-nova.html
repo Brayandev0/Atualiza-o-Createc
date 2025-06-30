@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#ffffff" />
     <title>Createc - Soluções em TI</title>
 
-    <strong>wfwefwefwe</strong>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
@@ -18,7 +17,6 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/layout.css" />
-    <script type="module" src="faq.js" defer></script>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-64x64.png" />
     <style>
         :root {
@@ -454,15 +452,45 @@
 </header>
 
 <body>
+    <header>
+        <div class="container">
+            <div class="img">
+                <img src="arts/logo.png" alt="Logo" />
+            </div>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Inicio</a></li>
+                    <li><a href="sobre-nos" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="solucoes" class="nav-link">Soluções</a></li>
+                    <li><a href="servicos" class="nav-link">Serviços</a></li>
+                    <li><a href="Resultado" class="nav-link">Resultados</a></li>
+                    <li><a href="faq" class="nav-link active">FAQ</a></li>
+                    <li><a href="/atendimento" class="nav-link">Suporte</a></li>
+                    <li><a href="contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-links-container">
+                <button class="cart-button" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu()" id="menu-mobile">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
 
     <div class="container-faq">
-        <!-- Introdução da FAQ -->
         <div class="intro">
             <h2>Perguntas Frequentes</h2>
             <p style="color: white;">Encontre respostas para as perguntas mais comuns sobre nossos serviços e produtos
                 de tecnologia.</p>
 
-            <!-- Caixa de pesquisa -->
             <div class="search-container">
                 <input type="text" id="search-faq" placeholder="Pesquisar perguntas..." onkeyup="searchFAQ()">
                 <svg viewBox="0 0 24 24" width="20" height="20" class="search-icon">
@@ -471,13 +499,16 @@
                 </svg>
             </div>
 
-            <!-- Filtro de categorias -->
-            <div class="category-filter" id="category-filter">
-                <!-- As categorias serão carregadas do arquivo config.js -->
+            <div class="category-filter">
+                <button class="category-btn active" onclick="filterCategory('todas')">Todas</button>
+                <button class="category-btn" onclick="filterCategory('email')">E-mail</button>
+                <button class="category-btn" onclick="filterCategory('atendimento')">Atendimento</button>
+                <button class="category-btn" onclick="filterCategory('servicos')">Serviços</button>
+                <button class="category-btn" onclick="filterCategory('empresa')">Empresa</button>
+                <button class="category-btn" onclick="filterCategory('planos')">Planos</button>
             </div>
         </div>
 
-        <!-- Lista de perguntas frequentes (FAQ) -->
         <div class="faq-container" id="faq-list">
             <!-- FAQ Exemplo -->
             <div class="faq-item">
@@ -485,19 +516,158 @@
                 <p>Você pode começar criando uma conta em nosso site e selecionando o serviço que melhor atende às suas
                     necessidades.</p>
             </div>
-            <div class="faq-item">
-                <h3>Quais tecnologias vocês utilizam?</h3>
-                <p>Utilizamos tecnologias modernas como JavaScript, Python, Node.js, React e muitas outras.</p>
+
+            <div class="faq-item" data-category="atendimento">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Atendimento</span>
+                        <h3>Qual o horário de atendimento?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Atendemos de segunda a sexta-feira, das 8h às 18h.
+                </div>
             </div>
-            <!-- Adicione mais itens conforme necessário -->
+
+            <div class="faq-item" data-category="servicos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Serviços</span>
+                        <h3>Como funciona a entrega de sites?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Todos os planos contratados são entregues prontos e configurados, permitindo o uso imediato, mesmo para quem não tem experiência técnica.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="atendimento">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Atendimento</span>
+                        <h3>Como posso solicitar um orçamento?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Solicite um orçamento facilmente em nossa página de contato.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="atendimento">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Atendimento</span>
+                        <h3>Como posso entrar em contato com o suporte?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Você pode entrar em contato com o suporte através do e-mail suporte@createc.com.br ou pelo nosso sistema de Suporte.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="servicos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Serviços</span>
+                        <h3>O que é SEO e por que é importante para meu site?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    SEO (Search Engine Optimization) é o conjunto de técnicas para otimizar sites e melhorar seu posicionamento nos mecanismos de busca, como o Google. Isso aumenta a visibilidade, atrai mais visitantes e gera tráfego qualificado.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="empresa">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Empresa</span>
+                        <h3>Quem somos?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Somos uma startup de tecnologia especializada em oferecer soluções digitais inovadoras para resolver problemas de negócios.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="servicos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Serviços</span>
+                        <h3>Quais serviços nós oferecemos?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Oferecemos criação e personalização de sites, configuração de domínio e hospedagem, SEO e gerenciamento de marketing e redes sociais.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="servicos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Serviços</span>
+                        <h3>Qual o tempo de entrega dos nossos serviços?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    O tempo de entrega varia conforme o plano escolhido. No plano <strong>Tracionado</strong>, a entrega total do projeto costuma levar cerca de 4 semanas.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="atendimento">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Atendimento</span>
+                        <h3>Como acompanho meus orçamentos?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Todos os orçamentos solicitados são enviados ao suporte, e o tempo de atendimento depende do volume de solicitações.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="planos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Planos</span>
+                        <h3>Posso alterar o plano contratado após a compra?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sim, você pode solicitar a alteração do plano contratado em até 10 dias úteis. Entre em contato com nosso suporte para realizar a mudança.
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="planos">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <div class="question-content">
+                        <span class="faq-category-pill">Planos</span>
+                        <h3>Posso contratar um pacote mesmo estando fora do Brasil?</h3>
+                    </div>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Sim, todas as contratações ocorrem normalmente, independentemente da sua localização.
+                </div>
+            </div>
         </div>
-    </div>
 
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
+        <div class="no-results" id="no-results">
+            <div class="no-results-icon">
+                <i class="fas fa-search" style="font-size: 3rem; color: var(--secondary-color);"></i>
+            </div>
+            <h3>Nenhum resultado encontrado</h3>
+            <p>Não encontramos perguntas que correspondam à sua pesquisa. Tente outros termos ou navegue pelas categorias.</p>
+            <button class="reset-btn" onclick="resetSearch()">Limpar Pesquisa</button>
         </div>
     </div>
 
@@ -513,31 +683,127 @@
                 <a id="cookieBtn" class="footer-link">Configuração de Cookies</a>
             </div>
         </div>
-
         <p class="copyright">&copy; Createc 2025. Todos os direitos reservados</p>
-
-        <div class="social-icons">
+        <div class="social-icons">  
             <a href="https://www.facebook.com/profile.php?id=61574403354143" class="social-icon" id="facebook-icon">
-                <i class="fab fa-facebook-f"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="var(--primary-color)">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
             </a>
             <a href="https://www.instagram.com/createc.com.br" class="social-icon" id="instagram-icon">
-                <i class="fab fa-instagram"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="var(--primary-color)">
+                    <path d="M12 2c-2.714 0-3.056.012-4.123.06-1.064.049-1.791.218-2.427.465a4.901 4.901 0 0 0-1.772 1.153 4.9 4.9 0 0 0-1.153 1.772c-.247.636-.416 1.363-.465 2.427C2.012 8.944 2 9.286 2 12s.012 3.056.06 4.123c.049 1.064.218 1.791.465 2.427a4.9 4.9 0 0 0 1.153 1.772 4.901 4.901 0 0 0 1.772 1.153c.636.247 1.363.416 2.427.465 1.067.048 1.409.06 4.123.06s3.056-.012 4.123-.06c1.064-.049 1.791-.218 2.427-.465a4.901 4.901 0 0 0 1.772-1.153 4.9 4.9 0 0 0 1.153-1.772c.247-.636.416-1.363.465-2.427.048-1.067.06-1.409.06-4.123s-.012-3.056-.06-4.123c-.049-1.064-.218-1.791-.465-2.427a4.9 4.9 0 0 0-1.153-1.772 4.901 4.901 0 0 0-1.772-1.153c-.636-.247-1.363-.416-2.427-.465C15.056 2.012 14.714 2 12 2zm0 1.8c2.667 0 2.986.01 4.041.058.976.045 1.505.208 1.858.345.467.182.8.4 1.15.75.35.35.568.683.75 1.15.137.353.3.882.345 1.858.048 1.055.058 1.374.058 4.041 0 2.667-.01 2.986-.058 4.041-.045.976-.208 1.505-.345 1.858a3.09 3.09 0 0 1-.75 1.15 3.09 3.09 0 0 1-1.15.75c-.353.137-.882.3-1.858.345-1.055.048-1.374.058-4.041.058-2.667 0-2.986-.01-4.041-.058-.976-.045-1.505-.208-1.858-.345a3.09 3.09 0 0 1-1.15-.75 3.09 3.09 0 0 1-.75-1.15c-.137-.353-.3-.882-.345-1.858-.048-1.055-.058-1.374-.058-4.041 0-2.667.01-2.986.058-4.041.045-.976.208-1.505.345-1.858.182-.467.4-.8.75-1.15a3.09 3.09 0 0 1 1.15-.75c.353-.137.882-.3 1.858-.345 1.055-.048 1.374-.058 4.041-.058zm0 3.065a5.135 5.135 0 1 0 0 10.27 5.135 5.135 0 0 0 0-10.27zm0 8.47a3.335 3.335 0 1 1 0-6.67 3.335 3.335 0 0 1 0 6.67zm6.538-8.67a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/>
+                </svg>
             </a>
+         
             <a href="https://www.linkedin.com/groups/10078001" class="social-icon" id="linkedin-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--primary-color)">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
             </a>
-        </div>
+                   
+         
+        </div> 
     </footer>
 
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        new window.VLibras.Widget("https://vlibras.gov.br/app");
+        function toggleAnswer(element) {
+            const faqItem = element.closest('.faq-item');
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close other open items
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-toggle').textContent = '+';
+                }
+            });
+            
+            // Toggle current item
+            faqItem.classList.toggle('active');
+            toggle.textContent = faqItem.classList.contains('active') ? '-' : '+';
+        }
+
+        function searchFAQ() {
+            const searchTerm = document.getElementById('search-faq').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+        }
+
+        function filterCategory(category) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            // Update active button
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            faqItems.forEach(item => {
+                if (category === 'todas' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+        }
+
+        function resetSearch() {
+            document.getElementById('search-faq').value = '';
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.style.display = 'block';
+            });
+            document.getElementById('no-results').style.display = 'none';
+            
+            // Reset to "Todas" category
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.category-btn').classList.add('active');
+        }
+
+        function toggleTerms() {
+            const dropdown = document.getElementById('terms-dropdown');
+            const isVisible = dropdown.style.display === 'block';
+            dropdown.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function toggleCart() {
+            // Cart functionality placeholder
+            console.log('Cart toggled');
+        }
+
+        function toggleMenu() {
+            // Mobile menu functionality placeholder
+            console.log('Menu toggled');
+        }
+
+        // Close terms dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const termsToggle = document.querySelector('.terms-toggle');
+            const termsDropdown = document.getElementById('terms-dropdown');
+            
+            if (!termsToggle.contains(event.target) && !termsDropdown.contains(event.target)) {
+                termsDropdown.style.display = 'none';
+            }
+        });
     </script>
-
-    <script src="/login/auth.js"></script>
-    <script src="/login/header.js"></script>
-    <script src="carrinho.js"></script>
-    <script src="carrinho-cook.js"></script>
 </body>
-
 </html>
